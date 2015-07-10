@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>{% block title %}{% endblock %}</title>
+        <!-- Bootstrap core CSS -->
+        <link href="{{ STATIC_URL }}lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<link href="{{ STATIC_URL }}lib/bootstrap/css/font-awesome.min.css" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="{{ STATIC_URL }}css/style.css" rel="stylesheet">
+
+        <!--jquery  -->
+	<script src="{{ STATIC_URL }}lib/jquery.js"></script>
+	<script src="{{ STATIC_URL }}lib/scorllup.js"></script>
+
+        <!--SyntaxHighter-->
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}lib/shCore.css">  
+        
+	 
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}lib/shThemeRDark.css"> 
+       
+	<script type="text/javascript" src="{{ STATIC_URL }}lib/shCore.js"></script> 
+
+ 	<script  type="text/javascript" src="{{ STATIC_URL }}lib/scripts/shAutoloader.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}lib/scripts/shBrushJScript.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}lib/scripts/shBrushBash.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}lib/scripts/shBrushPython.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}lib/scripts/shBrushCpp.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}lib/scripts/shBrushJava.js"></script>
+
+
+	<script type="text/javascript">
+		 window.onload = SyntaxHighlighter.all();	
+	</script>
+
+
+        
+	
+
+        <!-- jqcloud -->
+	<script src="{{ STATIC_URL }}lib/jqcloud-1.0.4.js"></script>
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}lib/jqcloud.css">
+
+
+        <!--responsive-nav-->
+	<script src="{{ STATIC_URL }}lib/responsive-nav.js"></script>
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}lib/responsive-nav.css">
+
+        <!-- visitor counts -->
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+</head>
+<script>
+$(function () {
+    $.scrollUp({
+   });
+});
+</script>
+<body class="home blog layout-cs">
+<div id="wrap">		
+         <header id="header" role="banner">	
+		<div class="container">	
+			<div id="logo">
+	                	<h1 id="site-title">
+				<a href="http://www.tmackan.com/" rel="home"></>TmacKan的小站</a>
+				</h1>
+				<span id="site-description">唯有真实,才有千钧之力</span>
+			</div>
+			<div class="social-icons">
+			
+			 <a href="http://www.weibo.com/tmackan"><i style="position:relative;left:-2px;" class="icon-weibo icon-large"></i></a>
+			 <a href="https://github.com/tmacjx"> <i style="position:relative;left:-2px;" class="icon-github icon-large"></i></a>
+			 <a href="{% url 'RSS' %}"><i style="position:relative;left:-2px;" class="icon-rss icon-large"></i></a>                
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<nav class="nav nav-primary">
+			<div class="container">
+				<ul id="menu-%e9%a6%96%e9%a1%b5" class="menu sf-js-enabled sf-shadow">
+				<li id="menu-item-43" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-43">
+                                     <a href="{% url 'home'%}">首页</a></li>
+				<li id="menu-item-45" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-45">
+                                     <a href="{% url 'archive'%}">文章存档</a></li>
+
+				<li id="menu-item-44" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-44">
+                                     <a href="{% url 'message' %}">给我留言</a></li>
+				<li id="menu-item-42" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-42">
+                                     <a href="{% url 'about'%}">关于我</a></li>
+				</ul>
+			</div>
+	
+		</nav>	
+
+		<div id="nav2">
+  <ul>
+    <li><a href="{% url 'home'%}"">首页</a></li>
+    <li><a href="{% url 'archive'%}">文章归档</a></li>
+    <li><a href="{% url 'message'%}">给我留言</a></li>
+    <li><a href="{% url 'about'%}">关于我</a></li>
+  </ul>
+</div>
+	</header>
+			
+	<div id="main" class="container">
+		<div id="content-sidebar-wrap">
+			  <div id="content">
+				<div class="breadcrumb">
+                                    
+                                   {% block path %}{% endblock %}
+                                       
+                                </div>
+                                                               
+                                  {% block content %}{% endblock %}
+				
+			   </div> <!-- #content -->
+			<aside id="sidebar-primary" role="complementary">
+			          {% block side %}{% endblock %}
+				
+			</aside>
+		</div> <!-- #content-sidebar -->
+	</div> <!-- #main -->
+<center>
+	<footer id="footer" role="contentinfo">
+           
+		<div id="footer-content">
+			<div class="container">
+	                <div style="max-width:500px;">
+                        <div id="copyright">TmacKan© 2015
+                        <!--Site count -->
+                        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : "    http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1255435139'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1255435139%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+
+                        <span id="busuanzi_container_site_pv" style='display:none'>
+                        本站总访问量<span id="busuanzi_value_site_pv"></span>次
+                        </div> 
+
+                        </div>		
+			<div class="clearfix"></div>
+				
+			</div>
+		</div>
+	</footer>
+</center>
+</div> <!-- #wrap -->
+
+
+		
+	<!-- visitor  count -->
+
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+	
+
+<script>
+  var navigation = responsiveNav("#nav2");
+</script>
+
+
+ 
+
+
+</body>
+
+</html>
+

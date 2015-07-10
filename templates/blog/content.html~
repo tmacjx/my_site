@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block title %}
+   {{article.title}}|TmacKan的小站
+{% endblock %}
+{% block path %}
+   <a href = "{% url 'home' %}">当前位置&nbsp;:&nbsp;首页&nbsp;</a>»&nbsp;文章分类&nbsp;:&nbsp;<a href="{%  url 'classfiDetail' classfi=article.classification %}">{{article.classification}}&nbsp;</a>»&nbsp; {{article.title}}
+{% endblock %} 
+{% block content %}
+
+<div class="archive">
+        <div id="archives" style="background:black"> 
+        
+	<header class="entry-header">
+		<div class="entry-info">
+			<span class="entry-date">
+                                <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+				
+				{{article.publish_time.year}}年{{article.publish_time.month}}月{{article.publish_time.day}}日
+			</span>
+		 	<span class="author vcard">
+                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+		 		Kan		 	
+                        </span>
+		  	<span class="comments-link">
+  				<span class="ds-thread-count" data-thread-key="{{article.id}}"></span>
+			</span>
+		  
+		 </div>	
+
+					
+		 <h1 class="entry-title"> 
+                
+                    {{article.title}}
+		</h1>
+
+
+
+	 	<div class="post-format-indicator">
+
+			<a class="entry-format" href="{{ article.get_absolute_url }}"></a>
+		</div>
+		
+ 	</header>
+	<div>
+
+		       	
+			  {{ article.content|safe }}
+			
+			<div class="clearfix"></div>
+	</div><!-- .entry-content -->
+
+
+
+	<footer class="entry-meta">
+ 
+	    <div class="fenlei">
+
+		<span class="entry-categories">
+                	<span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span> 
+			<a href="{% url 'classfiDetail' classfi=article.classification %}" rel="category">{{article.classification}}</a>
+		</span>
+		<span class="entry-tags">        
+                        <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> 
+                          {% for i in article.get_tags %}
+                               
+                               <a href="{{ i.get_absolute_url }}" rel="tag"> {{i}}</a>
+                          {% endfor %}
+                </span>
+	   </div>
+
+		
+           
+	<!-- JiaThis Button BEGIN -->
+	  <div class="jiathis_style" style="float:right;">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_qzone">QQ空间</a>
+		<a class="jiathis_button_tsina">新浪微博</a>
+		<a class="jiathis_button_weixin">微信</a>
+	
+	  </div>
+
+	<!-- JiaThis Button END -->
+
+
+		
+	</footer>
+       
+</div>
+</div>    
+
+	   {% if article.get_before_article %}
+                  {% with before=article.get_before_article %}
+                   <p class="p1">上一篇 <a href="{{ before.get_absolute_url }}">{{before}} </a></p>
+                  {% endwith %}
+     	   {% endif %}
+
+	   {% if article.get_after_article %}
+ 
+                  {% with after=article.get_after_article %}
+            <p class="p2">下一篇 <a href="{{ after.get_absolute_url }}">{{after}} </a></p> 
+  		  {% endwith %}
+     	   {% endif %}
+          
+
+
+
+        {% include "blog/_comments.html" %}
+{% endblock %}
+
+{% block side %}
+	{% include "blog/_side.html" %}
+{% endblock %}
